@@ -7,8 +7,12 @@ var apiserver = express()
 apiserver.use(express.json())
 apiserver.use(cors())
 
-// Made by Hasnain Ali
+apiserver.get('/getproduct',async(req,res)=>{
+    var rec = await mongoserver.db('Mydata').collection('users').find().toArray()
+    res.json({rec})
+})
 
+// Made by Hasnain Ali
 // GET API to fetch random data from MongoDB collection
 apiserver.get('/api/random-data', async (req, res) => {
   try {

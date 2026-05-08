@@ -61,6 +61,20 @@ apiserver.get('/api/random-data', async (req, res) => {
   }
 })
 
+
+//Shoaib api user fetch
+
+server.get ('/users', async (req, res) => { 
+    try {
+        await mongo.connect()
+        var db = mongo.db('test')
+        var data = await db.collection('product').find().toArray()
+        res.json(data)
+    } catch (err) {
+        res.json({ error: err.message })
+    }
+})
+
 // Server listening
 apiserver.listen(5000, () => {
   console.log('Server running on port 5000')
